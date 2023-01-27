@@ -1,11 +1,12 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 /* eslint-disable max-len */
 export const port = process.env.PORT || 4000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
 export const url = process.env.SITE_URL; /* From ENV */
 export const sitename = process.env.SITENAME;
-export const environment = process.env.environment || 'DEV';
+export const environment = process.env.environment || 'DEV'; // DEV or STAGING or PROD
 export const websiteUrl = process.env.WEBSITE_URL;
 
 export const databaseConfig = { /* From ENV */

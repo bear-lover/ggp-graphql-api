@@ -1,3 +1,8 @@
+/*
+
+
+*/
+
 import express from 'express';
 import path from 'path';
 import compression from 'compression';
@@ -6,9 +11,12 @@ import bodyParser from 'body-parser';
 import expressJwt from 'express-jwt';
 import expressGraphQL from 'express-graphql';
 import PrettyError from 'pretty-error';
+import moment from 'moment';
+
 
 // configurations
-import { auth, port, environment } from './config';
+import { auth, port, host, environment } from './config';
+import logger from './config/logger';
 
 // GraphQL
 import models from './data/models';
@@ -20,7 +28,7 @@ import { verifyJWT_MW } from './libs/middleware';
 import paypalRoutes from './libs/payment/paypal/paypal';
 
 const app = express();
-const __DEV__ = environment;
+
 app.use(compression());
 
 // Middlewares
@@ -52,7 +60,7 @@ app.use(function (err, req, res, next) {
 
 app.use(verifyJWT_MW);
 
-if (__DEV__) {
+if (environment == 'DEV') {
     app.enable('trust proxy');
 }
 
@@ -60,15 +68,24 @@ pushNotificationRoutes(app);
 paypalRoutes(app);
 
 // Express GraphQL 
-const graphqlMiddleware = expressGraphQL((req, res) => ({
-    schema,
-    graphiql: __DEV__,
-    rootValue: {
-        request: req,
-        response: res
-    },
-    pretty: __DEV__,
-}));
+const graphqlMiddleware = ( environment === "PROD" ) 
+    ? expressGraphQL((req, res) => ({
+        schema,
+        graphiql: false,
+        rootValue: {
+            request: req,
+            response: res
+        },
+        pretty: false,
+    })) : expressGraphQL((req, res) => ({
+        schema,
+        graphiql: true,
+        rootValue: {
+            request: req,
+            response: res
+        },
+        pretty: true,
+    }));
 
 app.use('/graphql', graphqlMiddleware);
 
@@ -78,7 +95,7 @@ app.post('/check', function (req, res) {
     res.sendStatus(200);
 });
 
-app.get('/user/payout/:status', async function(req, res) {
+app.get('/user/payout/:status', async function (req, res) {
     res.send('  ');
 })
 
@@ -90,7 +107,33 @@ pe.skipPackage('express');
 
 // Server launch
 models.sync().catch(err => console.log(err.stack)).then(() => {
-    app.listen({ port: 4000 }, () =>
-        console.log(`Server ready at http://localhost:4000`),
+    app.listen({ port: 4000 }, () => {
+        console.log('\x1b[36m', "Server ready at http://localhost:4000", "\x1b[0m");
+        console.log('\x1b[36m', "GraphQL Server started on port " + host + ":" + port + " Env:" + environment + " with time zone " + new Date(), "\x1b[0m");
+        console.log('\x1b[36m', "GraphQL Server TimeZone : " + moment.tz.guess(), "\x1b[0m");
+    }
     )
+});
+
+
+process.on("beforeExit", (code) => {
+    console.log("Process beforeExit event with code: ", code);
+});
+
+process.on("exit", (code) => {
+    console.log("Process exit event with code: ", code);
+});
+
+process.on("uncaughtException", function (err) {
+    console.error("An uncaught error occurred!");
+    logger.logDebug(err);
+    console.error(err);
+    process.exit(1);
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+    console.log("Unhandled rejection at ", promise, `reason: ${reason.message}`);
+    console.log("Stack", reason.stack);
+    logger.logDebug(reason.message);
+    process.exit(1);
 });

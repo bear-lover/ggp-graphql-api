@@ -1,11 +1,17 @@
 {
-  "name": "rentall_mobile_api",
+  "name": "pavan",
   "version": "3.4.2",
   "private": true,
-  "description": "",
+  "description": "API",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=8",
+    "yarn": "*"
+  },
   "scripts": {
     "build": "babel ./src --out-dir ./build",
-    "start": "./node_modules/nodemon/bin/nodemon.js --exec babel-node ./src/server.js --host 0.0.0.0",
+    "start": "cross-env NODE_ENV=production pm2 start ./src/server.js",
+    "dev": "SET NODE_ENV=develop && nodemon --exec babel-node ./src/server.js --host 0.0.0.0",
     "test": "./node_modules/nodemon/bin/nodemon.js ./build/server.js --host 0.0.0.0"
   },
   "keywords": [],
@@ -18,6 +24,7 @@
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "cookie-parser": "^1.4.3",
+    "countries-db": "^1.2.0",
     "dotenv": "^8.1.0",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
@@ -27,6 +34,8 @@
     "graphql-tag": "^2.9.2",
     "ip": "^1.1.5",
     "jsonwebtoken": "^8.3.0",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.32",
     "money": "^0.2.0",
     "mysql2": "^1.6.1",
     "node-fetch": "^2.2.0",
@@ -36,9 +45,8 @@
     "sequelize": "^4.38.1",
     "stripe": "8.18.0",
     "twilio": "^3.29.1",
-    "countries-db": "^1.2.0",
-    "moment": "^2.18.1",
-    "moment-timezone": "^0.5.32"
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
