@@ -1,5 +1,5 @@
 {
-  "name": "pavan",
+  "name": "ggp",
   "version": "3.4.2",
   "private": true,
   "description": "API",
@@ -15,7 +15,7 @@
     "test": "./node_modules/nodemon/bin/nodemon.js ./build/server.js --host 0.0.0.0"
   },
   "keywords": [],
-  "author": "RadicalStart InfoLab Pvt Ltd",
+  "author": "Pavan Kasu PKKASU@YAHOO.COM",
   "dependencies": {
     "apollo-boost": "^0.1.16",
     "apollo-server-express": "^2.1.0",

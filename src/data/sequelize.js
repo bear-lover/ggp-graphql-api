@@ -1,3 +1,6 @@
+/*
+   Database Initialization 
+*/
 import Sequelize from 'sequelize';
 import { databaseConfig, environment } from '../config';
 const Op = Sequelize.Op;
