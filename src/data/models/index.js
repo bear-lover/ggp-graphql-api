@@ -1,15 +1,21 @@
+/*
+
+*/
 import sequelize from '../sequelize';
 
 // Models
 import AdminUser from './siteAdmin/AdminUser';
 import User from './User';
 import UserLogin from './UserLogin';
+import UserClaim from './UserClaim';
 import UserProfile from './UserProfile';
 import UserVerifiedInfo from './UserVerifiedInfo';
 import EmailToken from './EmailToken';
 import ForgotPassword from './ForgotPassword';
+import AdminReviews from './AdminReviews';
 import ListSettings from './siteAdmin/ListSettings';
 import ListSettingsTypes from './siteAdmin/ListSettingsTypes';
+import PopularLocation from './siteadmin/PopularLocation';
 import ListViews from './ListViews';
 import Listing from './Listing';
 import ListBlockedDates from './ListBlockedDates';
@@ -32,14 +38,22 @@ import PaymentMethods from './PaymentMethods';
 import ThreadItems from './ThreadItems';
 import Transaction from './Transaction';
 import TransactionHistory from './TransactionHistory';
+import BlogDetails from './BlogDetails';
 import Reservation from './Reservation';
 import SearchSettings from './SearchSettings';
 import ServiceFees from './ServiceFees';
+import FooterBlock from './FooterBlock';
 import Threads from './Threads';
 import ReportUser from './ReportUser';
+import StaticInfoBlock from './StaticInfoBlock';
+import HomeBanner from './HomeBanner';
+import WhyHostInfoBlock from './WhyHostInfoBlock'
 import WishListGroup from './WishListGroup';
 import Country from './Country';
-import PopularLocation from './siteAdmin/PopularLocation'
+// import PopularLocation from './siteAdmin/PopularLocation'
+
+//Idverification
+import DocumentVerification from './DocumentVerification';
 
 // Currencies
 import Currencies from './Currencies';
@@ -48,13 +62,23 @@ import UserListingSteps from './UserListingSteps';
 
 // SiteAdmin
 import SiteSettings from './siteAdmin/SiteSettings';
+import AdminRoles from './siteadmin/AdminRoles';
+import AdminPrivileges from './siteadmin/AdminPrivileges';
 
 // Special Price
 import ReservationSpecialPricing from './ReservationSpecialPricing';
 import ListingPermissionHistory from './ListingPermissionHistory';
 
+//Failed TransactionHistory
+import FailedTransactionHistory from './FailedTransactionHistory';
+
+// Static side menu
+import SideMenu from './SideMenu';
+
+import Banner from './Banner';
 import ImageBanner from './siteAdmin/ImageBanner'
 import StaticPage from './StaticPage';
+import PaymentSettings from './PaymentSettings';
 import WhyHost from './siteAdmin/WhyHost';
 
 function sync(...args) {
@@ -521,5 +545,19 @@ export {
   ListingPermissionHistory,
   ImageBanner,
   StaticPage,
-  WhyHost
+  WhyHost,
+  AdminReviews,
+  Banner,
+  BlogDetails,
+  DocumentVerification,
+  FailedTransactionHistory,
+  FooterBlock,
+  HomeBanner,
+  // ImageBanner,
+  PaymentSettings,
+  SideMenu,
+  StaticInfoBlock,
+  WhyHostInfoBlock,
+  AdminPrivileges,
+  AdminRoles,
 };
