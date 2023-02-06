@@ -76,7 +76,9 @@ const userAccount = {
             'info',
             'createdAt',
             'picture',
-            'countryCode'
+            'countryCode',
+            'country',
+            'countryName'            
           ],
           where: { userId },
         });

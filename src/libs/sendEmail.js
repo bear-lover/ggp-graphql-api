@@ -25,17 +25,19 @@ export async function sendEmail(to, type, mailContents, isLoggedIn, authToken, )
         }
     }
 
-    const resp = await fetch(websiteUrl + '/sendEmailTemplate', {
-        method: 'post',
-        headers,
-        body: JSON.stringify({
-            to,
-            type,
-            content: mailContents
-        })
-    });
+    let status;
+    let errorMessge;
+    // const resp = await fetch(websiteUrl + '/sendEmailTemplate', {
+    //     method: 'post',
+    //     headers,
+    //     body: JSON.stringify({
+    //         to,
+    //         type,
+    //         content: mailContents
+    //     })
+    // });
 
-    const { status, errorMessge } = resp.json;
+    // const { status, errorMessge } = resp.json;
 
     return await {
         status,

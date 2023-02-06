@@ -6,7 +6,8 @@ const User = Model.define('User', {
 
   id: {
     type: DataType.UUID,
-    defaultValue: DataType.UUIDV1,
+    defaultValue: DataType.UUIDV4,
+    allowNull: false,
     primaryKey: true,
   },
 
@@ -35,6 +36,11 @@ const User = Model.define('User', {
     defaultValue: false,
   },
 
+  // role: {
+  //   type: DataType.ENUM("USER", "HOST", "ADMIN"),
+  //   // allowNull: false,
+  //   defaultValue: "USER",
+  // },
   userDeletedAt: {
     type: DataType.DATE,
   },
@@ -42,11 +48,19 @@ const User = Model.define('User', {
   userDeletedBy: {
     type: DataType.STRING,
   },
-
+  createdAt: {
+    type: DataType.DATE,
+  },
+  updatedAt: {
+    type: DataType.DATE,
+  }
 }, {
-    indexes: [
-      { fields: ['email'] },
-    ],
+  freezeTableName: true, // Model tableName will be the same as the model name
+  timestamps: false,
+  underscored: true,
+  indexes: [
+    { fields: ['email'] },
+  ],
 });
 
 User.prototype.generateHash = function (password) { // eslint-disable-line  

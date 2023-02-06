@@ -21,9 +21,9 @@ export async function createJWToken(id, email) {
         id,
         email
     }, auth.jwt.secret, {
-            expiresIn,
-            algorithm: 'HS256'
-        })
+        expiresIn,
+        algorithm: 'HS256'
+    })
 
     return token;
 }

@@ -12,7 +12,7 @@ import expressJwt from 'express-jwt';
 import expressGraphQL from 'express-graphql';
 import PrettyError from 'pretty-error';
 import moment from 'moment';
-
+import cors from 'cors';
 
 // configurations
 import { auth, port, host, environment } from './config';
@@ -28,6 +28,15 @@ import { verifyJWT_MW } from './libs/middleware';
 import paypalRoutes from './libs/payment/paypal/paypal';
 
 const app = express();
+
+
+var corsOptions = {
+    origin: 'http://localhost:3001',
+    optionsSuccessStatus: 200 // For legacy browser support
+}
+
+
+app.use(cors(corsOptions))
 
 app.use(compression());
 
@@ -87,7 +96,7 @@ const graphqlMiddleware = ( environment === "PROD" )
         pretty: true,
     }));
 
-app.use('/graphql', graphqlMiddleware);
+app.use('/graphql', cors(), graphqlMiddleware);
 
 //
 app.post('/check', function (req, res) {
