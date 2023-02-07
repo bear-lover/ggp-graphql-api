@@ -6,7 +6,7 @@ import { User, Listing, UserProfile, SiteSettings } from '../../../data/models';
 import UserManagementType from '../../types/siteadmin/UserManagementType';
 
 // import { sendServerEmail } from '../../../core/email/sendServerEmail';
-import { adminEmail } from '../../../config';
+// import { adminEmail } from '../../../config';
 
 const updateBanServiceHistoryStatus = {
 	type: UserManagementType,

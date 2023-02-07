@@ -9,6 +9,9 @@ export const sitename = process.env.SITENAME;
 export const environment = process.env.environment || 'DEV'; // DEV or STAGING or PROD
 export const websiteUrl = process.env.WEBSITE_URL;
 
+export const locales = ['en-US', 'es', 'it-IT', 'fr-FR', 'pt-PT', 'ar', 'he'];
+
+
 export const databaseConfig = { /* From ENV */
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
@@ -22,6 +25,8 @@ export const auth = {
 };
 
 export const googleMapAPI = '<Your API Key>';
+export const googleMapServerAPI = process.env.GOOGLE_MAP_SERVER_API;
+
 
 export const payment = { /* From ENV */
   stripe: {
@@ -34,3 +39,5 @@ export const payment = { /* From ENV */
   },
 
 };
+
+

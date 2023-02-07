@@ -504,6 +504,7 @@ export {
   UserVerifiedInfo,
   EmailToken,
   UserLogin,
+  UserClaim,
   ForgotPassword,
   ListSettings,
   ListSettingsTypes,

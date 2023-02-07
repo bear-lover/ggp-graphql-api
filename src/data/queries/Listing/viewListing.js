@@ -4,7 +4,7 @@ import { Listing } from '../../models';
 
 import {
     GraphQLList as List,
-    GraphQLSring as StringType,
+    GraphQLString as StringType,
     GraphQLInt as IntType,
     GraphQLNonNull as NonNull,
     GraphQLBoolean as BooleanType,

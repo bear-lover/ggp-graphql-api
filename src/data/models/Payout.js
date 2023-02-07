@@ -1,6 +1,6 @@
 import DataType from 'sequelize';
 import Model from '../sequelize';
-import { NULL } from 'graphql/language/kinds';
+// import { NULL } from 'graphql/language/kinds';
 
 const Payout = Model.define('Payout', {
 
